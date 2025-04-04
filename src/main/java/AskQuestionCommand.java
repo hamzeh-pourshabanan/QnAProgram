@@ -7,11 +7,11 @@ public class AskQuestionCommand implements Command{
     public void execute(Scanner scanner, Map<String, List<String>> knowledgeBase) {
         System.out.print("Enter your question: ");
         String question = scanner.nextLine().trim();
-
+        if (!isInputLengthValid(question)) return;
         if (knowledgeBase.containsKey(question)) {
             knowledgeBase.get(question).forEach(System.out::println);
         } else {
-            System.out.println("The answer to life, universe and everything is 42");
+            System.out.println(Constants.UNIVERSE_RESPONSE);
         }
     }
 
