@@ -5,11 +5,11 @@ import java.util.Scanner;
 interface Command {
     void execute(Scanner scanner, Map<String, List<String>> knowledgeBase);
     String getName();
-    default boolean isInputLengthValid(String question) {
+    default boolean exceedsMaxLength(String question) {
         if (question.length() > Constants.MAX_LENGTH) {
             System.out.println("Question exceeds maximum length of 255 characters.");
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 }

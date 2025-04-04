@@ -7,7 +7,7 @@ public class AskQuestionCommand implements Command{
     public void execute(Scanner scanner, Map<String, List<String>> knowledgeBase) {
         System.out.print("Enter your question: ");
         String question = scanner.nextLine().trim();
-        if (!isInputLengthValid(question)) return;
+        if (exceedsMaxLength(question)) return;
         if (knowledgeBase.containsKey(question)) {
             knowledgeBase.get(question).forEach(System.out::println);
         } else {

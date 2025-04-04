@@ -19,7 +19,7 @@ public class AddQuestionCommand implements Command{
         String question = input.substring(0, questionMarkIndex).trim();
         String answersPart = input.substring(questionMarkIndex + 1).trim();
 
-        if (!isInputLengthValid(question)) return;
+        if (exceedsMaxLength(question)) return;
 
         if (question.isEmpty()) {
             System.out.println("Question cannot be empty.");
@@ -72,6 +72,6 @@ public class AddQuestionCommand implements Command{
 
     @Override
     public String getName() {
-        return null;
+        return "Add a question";
     }
 }
