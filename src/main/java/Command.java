@@ -5,5 +5,4 @@ import java.util.Scanner;
 interface Command {
     void execute(Scanner scanner, Map<String, List<String>> knowledgeBase);
     String getName();
-
 }
