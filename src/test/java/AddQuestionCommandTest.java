@@ -53,6 +53,18 @@ class AddQuestionCommandTest {
     }
 
     @Test
+    @DisplayName("Valid input with multiple answers")
+    void testValidInputWithMultipleAnswers() {
+        String input = "How to exit Vim? \":wq\" \":q!\" \"Ctrl+C\"";
+        provideInput(input);
+
+        command.execute(new Scanner(System.in), knowledgeBase);
+
+        assertEquals(List.of(":wq", ":q!", "Ctrl+C"), knowledgeBase.get("How to exit Vim"));
+        assertOutputContains("Question and answers added successfully!");
+    }
+
+    @Test
     @DisplayName("Missing question mark")
     void testMissingQuestionMark() {
         String input = "What is Java \"A programming language\"";
@@ -62,6 +74,63 @@ class AddQuestionCommandTest {
 
         assertTrue(knowledgeBase.isEmpty());
         assertOutputContains("Invalid format. Missing '?' separator.");
+    }
+
+    @Test
+    @DisplayName("Empty question")
+    void testEmptyQuestion() {
+        String input = "? \"Answer\"";
+        provideInput(input);
+
+        command.execute(new Scanner(System.in), knowledgeBase);
+
+        assertTrue(knowledgeBase.isEmpty());
+        assertOutputContains("Question cannot be empty.");
+    }
+
+    @Test
+    @DisplayName("No answers provided")
+    void testNoAnswersProvided() {
+        String input = "What is Java?";
+        provideInput(input);
+
+        command.execute(new Scanner(System.in), knowledgeBase);
+
+        assertTrue(knowledgeBase.isEmpty());
+        assertOutputContains("At least one answer is required.");
+    }
+
+    @Test
+    @DisplayName("Empty answer in quotes")
+    void testEmptyAnswerInQuotes() {
+        String input = "Question? \"\" \"Valid answer\"";
+        provideInput(input);
+
+        command.execute(new Scanner(System.in), knowledgeBase);
+
+        assertEquals(List.of("Valid answer"), knowledgeBase.get("Question"));
+    }
+
+    @Test
+    @DisplayName("Unclosed quote in answers")
+    void testUnclosedQuote() {
+        String input = "Question? \"Answer1\" \"Answer2";
+        provideInput(input);
+
+        command.execute(new Scanner(System.in), knowledgeBase);
+
+        assertEquals(List.of("Answer1"), knowledgeBase.get("Question"));
+    }
+
+    @Test
+    @DisplayName("Whitespace in question")
+    void testWhitespaceInQuestion() {
+        String input = "   What is Java   ? \"Answer\"";
+        provideInput(input);
+
+        command.execute(new Scanner(System.in), knowledgeBase);
+
+        assertTrue(knowledgeBase.containsKey("What is Java"));
     }
 
     @Test
