@@ -17,6 +17,6 @@ public class AskQuestionCommand implements Command{
 
     @Override
     public String getName() {
-        return null;
+        return "Ask a question";
     }
 }
