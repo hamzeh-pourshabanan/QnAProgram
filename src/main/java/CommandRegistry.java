@@ -10,9 +10,10 @@ public class CommandRegistry {
         commands.add(command);
     }
 
-    public void executeCommand(int choice, Scanner scanner, Map<String, List<String>> knowledgeBase) {
-        if (choice >= 1 && choice <= commands.size()) {
-            commands.get(choice - 1).execute(scanner, knowledgeBase);
+    public void executeCommand(String choice, Scanner scanner, Map<String, List<String>> knowledgeBase) {
+        int mChoice = Integer.parseInt(choice);
+        if (mChoice >= 1 && mChoice <= commands.size()) {
+            commands.get(mChoice - 1).execute(scanner, knowledgeBase);
         } else {
             System.out.println("Invalid choice.");
         }
