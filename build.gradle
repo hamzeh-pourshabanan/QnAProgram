@@ -21,9 +21,9 @@ test {
     useJUnitPlatform()
 }
 
-task run(type: JavaExec) {
+tasks.register('run', JavaExec) {
     standardInput = System.in
-    ignoreExitValue = true
+    ignoreExitValue = true as JavaExecSpec
     mainClass = 'src/main/java/application/Main.java'
     classpath = sourceSets.main.runtimeClasspath
 }
