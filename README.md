@@ -1,7 +1,7 @@
 # QA Console Application
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A command-line question-answer system with persistent storage, following clean hexagonal architecture principles.
+A command-line question-answer system with persistent storage, following clean **hexagonal architecture** principles.
 
 ## Features
 
