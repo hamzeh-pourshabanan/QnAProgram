@@ -64,6 +64,21 @@ graph TD
 
 - **Core**: `QAService` business logic
 
+### Technology Choices
+| Component | Library       | Version      | Rationale                 |
+| --------- | ------------- | ------------ | ------------------------- |
+| Database  | SQLite JDBC   | 3.49.1       | Lightweight, zero-config  |
+| Testing   | JUnit+Mockito | 5.9.1/5.17.0 | Modern Java testing stack |
+
+## 📦 Dependencies
+
+### Runtime
+- [SQLite JDBC](https://github.com/xerial/sqlite-jdbc) 3.49.1 - Database driver
+
+### Testing
+- [JUnit 5](https://junit.org/junit5/) 5.9.1 - Test framework
+- [Mockito](https://site.mockito.org/) 5.17.0 - Mocking library
+- [AssertJ](https://assertj.github.io/doc/) 3.27.3 - Fluent assertions
 
 ## Development
 
