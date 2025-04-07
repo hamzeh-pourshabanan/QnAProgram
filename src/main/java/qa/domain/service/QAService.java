@@ -7,12 +7,25 @@ import qa.domain.ports.QuestionRepository;
 
 import java.util.List;
 
+/**
+ * Central business logic service coordinating:
+ * <ul>
+ *   <li>Question/answer validation</li>
+ *   <li>Workflow orchestration</li>
+ *   <li>Exception translation</li>
+ *   <li>Implements input port</li>
+ *   <li>Depends on output port (Repository)</li>
+ * </ul>
+ */
 public class QAService implements InputPort {
     private static final Answer DEFAULT_ANSWER =
             new Answer("the answer to life, universe and everything is 42");
 
     private final QuestionRepository repository;
 
+    /**
+     * @param repository Required persistence layer
+     */
     public QAService(QuestionRepository repository) {
         this.repository = repository;
     }
