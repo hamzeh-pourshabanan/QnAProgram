@@ -94,11 +94,10 @@ graph TD
 
 ## Configuration
 
-Edit `src/main/resources/application.conf`:
-```hocon
-database {
-  url = "jdbc:sqlite:qa.db" # Change to :memory: for tests
-}
+Edit `src/main/java/qa/infrastructure/DatabaseConfig.java`:
+```java
+//change to inMemory() for testing
+DatabaseConfig config = DatabaseConfig.fileBased("qa.db");
 ```
 
 ## FAQ
