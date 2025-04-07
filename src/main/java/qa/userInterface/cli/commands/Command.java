@@ -7,7 +7,7 @@ interface Command {
     String getName();
     default boolean exceedsMaxLength(String question) {
         if (question.length() > Constants.MAX_LENGTH) {
-            System.out.println("Question exceeds maximum length of 255 characters.");
+            System.out.printf("Question exceeds maximum length of %d characters.\n", Constants.MAX_LENGTH);
             return true;
         }
         return false;
