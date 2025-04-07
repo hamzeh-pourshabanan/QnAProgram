@@ -6,6 +6,7 @@ import qa.domain.ports.InputPort;
 import qa.domain.ports.QuestionRepository;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Central business logic service coordinating:
@@ -27,6 +28,7 @@ public class QAService implements InputPort {
      * @param repository Required persistence layer
      */
     public QAService(QuestionRepository repository) {
+        Objects.requireNonNull(repository);
         this.repository = repository;
     }
     @Override
