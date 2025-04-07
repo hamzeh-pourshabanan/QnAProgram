@@ -73,6 +73,34 @@ public class MongoQuestionRepository implements QuestionRepository {
 
 4. **Result**: Web app with MongoDB, same business rules!
 
+```mermaid
+graph LR
+    subgraph Core
+        Service[QAService]
+        Models[Question, Answer]
+    end
+    
+    subgraph Input Adapters
+        CLI[Console]
+        Web[HTTP Controller]
+        API[REST]
+    end
+    
+    subgraph Output Adapters
+        SQLite[(SQLite)]
+        MongoDB[(MongoDB)]
+        Postgres[(PostgreSQL)]
+    end
+    
+    CLI --> Service
+    Web --> Service
+    API --> Service
+    
+    Service --> SQLite
+    Service --> MongoDB
+    Service --> Postgres
+```
+
 ## Architecture
 ```mermaid
 graph TD
@@ -107,34 +135,6 @@ graph TD
 - [JUnit 5](https://junit.org/junit5/) 5.9.1 - Test framework
 - [Mockito](https://site.mockito.org/) 5.17.0 - Mocking library
 - [AssertJ](https://assertj.github.io/doc/) 3.27.3 - Fluent assertions
-
-```mermaid
-graph LR
-    subgraph Core
-        Service[QAService]
-        Models[Question, Answer]
-    end
-    
-    subgraph Input Adapters
-        CLI[Console]
-        Web[HTTP Controller]
-        API[REST]
-    end
-    
-    subgraph Output Adapters
-        SQLite[(SQLite)]
-        MongoDB[(MongoDB)]
-        Postgres[(PostgreSQL)]
-    end
-    
-    CLI --> Service
-    Web --> Service
-    API --> Service
-    
-    Service --> SQLite
-    Service --> MongoDB
-    Service --> Postgres
-```
 
 ## Quick Start
 
