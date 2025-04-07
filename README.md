@@ -144,8 +144,8 @@ graph TD
 
 ### Installation
 ```bash
-git clone https://github.com/yourusername/qa-console-app.git
-cd qa-console-app
+git clone https://github.com/hamzeh-pourshabanan/QnAProgram.git
+cd QnAProgram
 ```
 
 ### Running the Application
