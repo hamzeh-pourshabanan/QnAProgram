@@ -11,7 +11,6 @@ import qa.domain.model.Answer;
 import qa.domain.model.Question;
 import qa.domain.ports.InputPort;
 import qa.domain.service.QAService;
-import qa.userInterface.cli.commands.AddQuestionCommand;
 import qa.userInterface.cli.parser.ParsedInput;
 import qa.userInterface.cli.parser.QuestionParser;
 
