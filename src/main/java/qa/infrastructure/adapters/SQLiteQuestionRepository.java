@@ -9,9 +9,22 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Database persistence adapter using SQLite.
+ * <p>
+ * Schema:
+ * <pre>
+ * questions(id, question_text UNIQUE)
+ * answers(id, question_id, answer_text)
+ * </pre>
+ */
 public class SQLiteQuestionRepository implements QuestionRepository {
     private final Connection connection;
 
+    /**
+     * @param config Database configuration including connection URL
+     * @throws SQLException If connection fails
+     */
     public SQLiteQuestionRepository(DatabaseConfig config) throws SQLException {
         this.connection = DriverManager.getConnection(config.url());
         initializeDatabase();
@@ -112,12 +125,6 @@ public class SQLiteQuestionRepository implements QuestionRepository {
             }
         } catch (SQLException e) {
             throw new RuntimeException("Failed to check question existence: " + question.text(), e);
-        }
-    }
-
-    public void close() throws SQLException {
-        if (connection != null && !connection.isClosed()) {
-            connection.close();
         }
     }
 }
