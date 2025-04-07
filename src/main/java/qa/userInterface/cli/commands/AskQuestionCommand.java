@@ -1,20 +1,26 @@
+package qa.userInterface.cli.commands;
+
+import qa.domain.model.Answer;
+import qa.domain.model.Question;
+import qa.domain.ports.InputPort;
+
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
-public class AskQuestionCommand implements Command{
+public class AskQuestionCommand implements Command {
     @Override
-    public void execute(Scanner scanner, Map<String, List<String>> knowledgeBase) {
+    public void execute(Scanner scanner,  InputPort service) {
         System.out.print("Enter your question: ");
         String question = scanner.nextLine().trim();
-        if (question.endsWith("?")){
-            question = question.substring(0, question.length() - 1);;
-        }
-        if (exceedsMaxLength(question)) return;
-        if (knowledgeBase.containsKey(question)) {
-            knowledgeBase.get(question).forEach(System.out::println);
-        } else {
-            System.out.println(Constants.UNIVERSE_RESPONSE);
+        try {
+            if (question.endsWith("?")){
+                question = question.substring(0, question.length() - 1);
+            }
+            List<Answer> answers = service.askQuestion(new Question(question));
+            answers.forEach(a -> System.out.println(a.text()));
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("Validation error: " + e.getMessage());
         }
     }
 

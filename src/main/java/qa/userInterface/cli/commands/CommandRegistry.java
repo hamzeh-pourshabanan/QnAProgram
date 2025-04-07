@@ -1,6 +1,9 @@
+package qa.userInterface.cli.commands;
+
+import qa.domain.ports.InputPort;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class CommandRegistry {
@@ -10,9 +13,9 @@ public class CommandRegistry {
         commands.add(command);
     }
 
-    public void executeCommand(int choice, Scanner scanner, Map<String, List<String>> knowledgeBase) {
+    public void executeCommand(int choice, Scanner scanner, InputPort service) {
         if (choice >= 1 && choice <= commands.size()) {
-            commands.get(choice - 1).execute(scanner, knowledgeBase);
+            commands.get(choice - 1).execute(scanner, service);
         } else {
             System.out.println("Invalid choice.");
         }

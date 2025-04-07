@@ -1,15 +1,10 @@
-import java.util.List;
-import java.util.Map;
+package qa.userInterface.cli.commands;
+
+import qa.domain.ports.InputPort;
+
 import java.util.Scanner;
 
 interface Command {
-    void execute(Scanner scanner, Map<String, List<String>> knowledgeBase);
+    void execute(Scanner scanner, InputPort service);
     String getName();
-    default boolean exceedsMaxLength(String question) {
-        if (question.length() > Constants.MAX_LENGTH) {
-            System.out.printf("Question exceeds maximum length of %d characters.\n", Constants.MAX_LENGTH);
-            return true;
-        }
-        return false;
-    }
 }
